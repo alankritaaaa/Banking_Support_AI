@@ -1,22 +1,13 @@
-# Python
-__pycache__/
-*.py[cod]
-.venv/
-venv/
-env/
+# Large BERT weights (~430 MB) exceed GitHub's 100 MB file limit
+banking77-bert-final/
 
-# Jupyter
+# Python / Jupyter
+venv/
+__pycache__/
+*.pyc
 .ipynb_checkpoints/
 
-# Trained models / checkpoints
-banking77-bert/
-banking77-bert-final/
-*.safetensors
-checkpoint-*/
-
-# Data
-*.csv
-
-# OS
-.DS_Store
-Thumbs.db
+# Training checkpoints
+banking-lora-checkpoints/
+banking-qlora-checkpoints/
+results_qlora/
