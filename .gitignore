@@ -1,13 +1,40 @@
-# Large BERT weights (~430 MB) exceed GitHub's 100 MB file limit
-banking77-bert-final/
-
-# Python / Jupyter
-venv/
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
 .ipynb_checkpoints/
 
-# Training checkpoints
-banking-lora-checkpoints/
-banking-qlora-checkpoints/
-results_qlora/
+# Streamlit
+.streamlit/secrets.toml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Python packaging
+*.egg-info/
+dist/
+build/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.*
+
+# Temporary files
+*.tmp
+*.temp
