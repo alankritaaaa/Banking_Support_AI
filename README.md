@@ -49,7 +49,7 @@ Grounded Response
 
 ## 🧠 Models
 
-### BERT — Intent Classification
+### BERT: Intent Classification
 
 * Fine-tuned on the **Banking77** dataset
 * Classifies queries into all **77 intents**
@@ -60,7 +60,7 @@ BERT answers:
 
 > "What is the customer asking about?"
 
-### TinyLlama — Response Generation
+### TinyLlama: Response Generation
 
 Two approaches were explored:
 
@@ -74,10 +74,10 @@ Two approaches were explored:
 
 The RAG pipeline uses:
 
-* **Sentence Transformers** — `all-MiniLM-L6-v2`
-* **FAISS** — vector similarity search
+* **Sentence Transformers** : `all-MiniLM-L6-v2`
+* **FAISS** : vector similarity search
 * A small banking-support knowledge base
-* **TinyLlama 1.1B** — response generation
+* **TinyLlama 1.1B** : response generation
 
 The system retrieves the top relevant documents for a customer query and provides them as context to the LLM.
 
