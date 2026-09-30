@@ -53,8 +53,8 @@ Grounded Response
 
 * Fine-tuned on the **Banking77** dataset
 * Classifies queries into all **77 intents**
-* Test Accuracy: **87.86%**
-* Test Weighted F1: **86.82%**
+* Test Accuracy: **90.10%**
+* Test Weighted F1: **89.92%**
 
 BERT answers:
 
