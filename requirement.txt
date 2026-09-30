@@ -1,9 +1,12 @@
+streamlit
 torch
 transformers
-datasets
+peft
+accelerate
+bitsandbytes
+sentence-transformers
+faiss-cpu
+scikit-learn
 pandas
 numpy
-scikit-learn
-matplotlib
-seaborn
-accelerate
+safetensors
