@@ -1,11 +1,19 @@
 # 🏦 Banking Support AI
 
-An end-to-end banking support AI prototype combining **BERT intent classification** with a **QLoRA fine-tuned TinyLlama** response generator.
+An end-to-end banking support AI project combining **BERT intent classification, QLoRA fine-tuning, Retrieval-Augmented Generation (RAG), and lightweight safety checks**.
 
-The system first identifies what a customer is asking about and then generates a concise support response.
+The project explores two approaches for generating banking-support responses:
+
+- **BERT + QLoRA TinyLlama**
+- **BERT + RAG + TinyLlama**
+
+---
 
 ## 🚀 Architecture
 
+### QLoRA Pipeline
+
+```text
 Customer Query
       ↓
 BERT Intent Classifier
@@ -17,96 +25,101 @@ Intent Router
 TinyLlama 1.1B + QLoRA
       ↓
 Banking Support Response
+````
 
-### Model responsibilities
+### RAG Pipeline
 
-**BERT**
-- Fine-tuned on the Banking77 dataset
-- Classifies queries into all **77 Banking77 intents**
-- Test Accuracy: **87.86%**
-- Test Weighted F1: **86.82%**
+```text
+Customer Query
+      ↓
+BERT Intent Classifier
+      ↓
+Sentence-Transformer Embeddings
+      ↓
+FAISS Retrieval
+      ↓
+Relevant Banking Knowledge
+      ↓
+TinyLlama 1.1B
+      ↓
+Grounded Response
+```
 
-**TinyLlama + QLoRA**
-- TinyLlama 1.1B Chat used as the base model
-- Fine-tuned using LoRA adapters with 4-bit NF4 quantization
-- Currently supports response generation for **15 selected intents**
+---
 
-## 🧠 Why two models?
+## 🧠 Models
 
-The models perform different tasks.
+### BERT — Intent Classification
+
+* Fine-tuned on the **Banking77** dataset
+* Classifies queries into all **77 intents**
+* Test Accuracy: **87.86%**
+* Test Weighted F1: **86.82%**
 
 BERT answers:
 
 > "What is the customer asking about?"
 
-TinyLlama answers:
+### TinyLlama — Response Generation
 
-> "How should the system respond?"
+Two approaches were explored:
 
-This separation makes the pipeline modular and allows the classification and generation components to be developed independently.
+**QLoRA:** TinyLlama 1.1B Chat fine-tuned with LoRA adapters and 4-bit NF4 quantization.
 
-## 📊 Dataset
+**RAG:** The base TinyLlama model receives relevant information retrieved from a banking-support knowledge base instead of using a fine-tuned response adapter.
 
-The project uses the **Banking77** dataset.
+---
 
-BERT uses all 77 intent categories.
+## 🔎 RAG Implementation
 
-For the QLoRA response generator, 15 intents were selected for the initial prototype because Banking77 provides intent-labeled queries rather than official support responses. Human-authored demonstration responses were therefore created for the selected intents.
+The RAG pipeline uses:
 
-Selected response-generation intents include:
+* **Sentence Transformers** — `all-MiniLM-L6-v2`
+* **FAISS** — vector similarity search
+* A small banking-support knowledge base
+* **TinyLlama 1.1B** — response generation
 
-- Card arrival
-- Card not working
-- Declined card payment
-- Lost or stolen card
-- Change PIN
-- Card activation
-- Pending transfer
-- Failed transfer
-- Declined transfer
-- Refund not showing up
-- Unrecognized cash withdrawal
-- Exchange rate
-- Top-up by card charge
-- Wrong cash amount received
-- Identity verification
+The system retrieves the top relevant documents for a customer query and provides them as context to the LLM.
 
-## ⚙️ QLoRA Configuration
+A retrieval sanity test across 7 representative queries achieved:
 
-- Base model: TinyLlama 1.1B Chat
-- Quantization: 4-bit NF4
-- LoRA rank: 8
-- LoRA alpha: 16
-- LoRA dropout: 0.05
-- Target modules: `q_proj`, `v_proj`
-- Training epochs: 1
-- Learning rate: `2e-4`
-- Maximum sequence length: 256
-- Hardware: NVIDIA T4 GPU
+**Top-3 Retrieval Accuracy: 100%**
 
-The QLoRA adapter is trained separately from the base TinyLlama model.
+> This is a prototype evaluation using a small knowledge base and test set.
 
-## 📈 Results
+---
+
+## 🛡️ Safety Checks
+
+The RAG application includes lightweight checks for:
+
+* Low BERT intent confidence
+* Low retrieval relevance
+* Prompt-echo behavior from TinyLlama
+
+When confidence or retrieval relevance is insufficient, the application can avoid presenting an unsupported response and recommend escalation.
+
+These are prototype-level safeguards and are not a replacement for production banking security or human review.
+
+---
+
+## 📊 Results
 
 ### BERT
 
-| Metric | Result |
-|---|---:|
-| Intent classes | 77 |
-| Test Accuracy | 87.86% |
-| Test Weighted F1 | 86.82% |
+| Metric           | Result |
+| ---------------- | -----: |
+| Intent Classes   |     77 |
+| Test Accuracy    | 90.10% |
+| Test Weighted F1 | 89.92% |
 
-### QLoRA
-
-The trained response generator successfully produced relevant responses for the selected banking-support intents during end-to-end testing.
-
-Example:
+### Example
 
 **Query**
 
 > My card payment was declined
 
-**Predicted intent**
+**Predicted Intent**
 
 `declined_card_payment`
 
@@ -114,24 +127,32 @@ Example:
 
 80.3%
 
-**Generated response**
+The system then uses the predicted intent and the selected response-generation approach to produce a banking-support response.
 
-> I'm sorry your card payment was declined. Please check that your card is active and that you have sufficient available funds. If the issue continues, please contact customer support.
+---
+
+## ⚙️ QLoRA Configuration
+
+* Base Model: TinyLlama 1.1B Chat
+* Quantization: 4-bit NF4
+* LoRA Rank: 8
+* LoRA Alpha: 16
+* LoRA Dropout: 0.05
+* Target Modules: `q_proj`, `v_proj`
+* Training Epochs: 1
+* Learning Rate: `2e-4`
+* Max Sequence Length: 256
+* Hardware: NVIDIA T4 GPU
+
+The QLoRA prototype supports response generation for **15 selected banking intents**.
+
+---
 
 ## 🛠️ Tech Stack
 
-- Python
-- PyTorch
-- Hugging Face Transformers
-- Hugging Face PEFT
-- BERT
-- TinyLlama
-- LoRA / QLoRA
-- bitsandbytes
-- scikit-learn
-- Pandas
-- Google Colab
-- NVIDIA T4 GPU
+`Python` `PyTorch` `Hugging Face Transformers` `Hugging Face PEFT` `BERT` `TinyLlama` `LoRA / QLoRA` `Sentence Transformers` `FAISS` `Streamlit` `scikit-learn` `Pandas` `Google Colab` `NVIDIA T4 GPU`
+
+---
 
 ## 📁 Repository Structure
 
@@ -141,4 +162,67 @@ banking-support-ai/
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
-└── Banking_Support_AI_Final.ipynb
+│
+├── Banking_Support_AI_Final.ipynb
+├── Banking_Support_RAG.ipynb
+├── Banking_77_notebook
+│
+├── app.py
+├── rag_app.py
+│
+├── banking77-bert-final/
+└── banking-support-qlora-final/
+```
+
+---
+
+## ▶️ Run Locally
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the QLoRA application:
+
+```bash
+streamlit run app.py
+```
+
+Run the RAG application:
+
+```bash
+streamlit run rag_app.py
+```
+
+---
+
+## ⚠️ Limitations
+
+This is a **prototype banking-support system** and does not connect to real customer accounts, transactions, balances, or banking APIs.
+
+The current RAG knowledge base contains general demonstration guidance rather than official bank policies.
+
+TinyLlama 1.1B is also a relatively small language model, so response quality and instruction-following are limited compared with larger LLMs.
+
+---
+
+## 🔮 Future Improvements
+
+* Larger and more authoritative knowledge bases
+* Improved retrieval and reranking
+* Automated RAG evaluation
+* Stronger guardrails
+* Tool calling and API integration
+* Agent-based workflows
+* Cloud deployment
+* Production monitoring
+
+---
+
+## 🎯 Project Objective
+
+This project demonstrates a progression from **NLP classification and fine-tuning to modern LLM application development**, exploring how BERT, QLoRA, RAG, vector retrieval, LLM generation, and application-level safety checks can work together in an AI support system.
+
+```
