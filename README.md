@@ -150,7 +150,22 @@ The QLoRA prototype supports response generation for **15 selected banking inten
 
 ## 🛠️ Tech Stack
 
-`Python` `PyTorch` `Hugging Face Transformers` `Hugging Face PEFT` `BERT` `TinyLlama` `LoRA / QLoRA` `Sentence Transformers` `FAISS` `Streamlit` `scikit-learn` `Pandas` `Google Colab` `NVIDIA T4 GPU`
+![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/-PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+![Hugging Face](https://img.shields.io/badge/-Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black)
+![Transformers](https://img.shields.io/badge/-Transformers-FF6F00?style=flat-square&logo=huggingface&logoColor=white)
+![PEFT](https://img.shields.io/badge/-PEFT-6A5ACD?style=flat-square)
+![BERT](https://img.shields.io/badge/-BERT-412991?style=flat-square)
+![TinyLlama](https://img.shields.io/badge/-TinyLlama-8A2BE2?style=flat-square)
+![LoRA](https://img.shields.io/badge/-LoRA-FF69B4?style=flat-square)
+![RAG](https://img.shields.io/badge/-RAG-00A67E?style=flat-square)
+![FAISS](https://img.shields.io/badge/-FAISS-0467DF?style=flat-square)
+![Sentence Transformers](https://img.shields.io/badge/-Sentence%20Transformers-FFB000?style=flat-square)
+![Streamlit](https://img.shields.io/badge/-Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/-scikit--learn-F7931E?style=flat-square&logo=scikitlearn&logoColor=white)
+![Pandas](https://img.shields.io/badge/-Pandas-150458?style=flat-square&logo=pandas&logoColor=white)
+![Google Colab](https://img.shields.io/badge/-Google%20Colab-F9AB00?style=flat-square&logo=googlecolab&logoColor=white)
+![NVIDIA](https://img.shields.io/badge/-NVIDIA%20T4-76B900?style=flat-square&logo=nvidia&logoColor=white)
 
 ---
 
