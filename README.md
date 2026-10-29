@@ -240,4 +240,7 @@ TinyLlama 1.1B is also a relatively small language model, so response quality an
 
 This project demonstrates a progression from **NLP classification and fine-tuning to modern LLM application development**, exploring how BERT, QLoRA, RAG, vector retrieval, LLM generation, and application-level safety checks can work together in an AI support system.
 
+
+and if youre reading this, hire me!
+
 ```
