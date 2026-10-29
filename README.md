@@ -234,6 +234,7 @@ TinyLlama 1.1B is also a relatively small language model, so response quality an
 * Cloud deployment
 * Production monitoring
 
+
 ---
 
 ## 🎯 Project Objective
@@ -242,5 +243,7 @@ This project demonstrates a progression from **NLP classification and fine-tunin
 
 
 and if youre reading this, hire me!
+
+PLEASE
 
 ```
