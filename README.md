@@ -244,6 +244,6 @@ This project demonstrates a progression from **NLP classification and fine-tunin
 
 and if youre reading this, hire me!
 
-PLEASE
+PLEASE :(
 
 ```
