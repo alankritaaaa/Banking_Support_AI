@@ -303,6 +303,11 @@ The QLoRA prototype supports response generation for **15 selected banking inten
 ![Pandas](https://img.shields.io/badge/-Pandas-150458?style=flat-square&logo=pandas&logoColor=white)
 ![Google Colab](https://img.shields.io/badge/-Google%20Colab-F9AB00?style=flat-square&logo=googlecolab&logoColor=white)
 ![NVIDIA](https://img.shields.io/badge/-NVIDIA%20T4-76B900?style=flat-square&logo=nvidia&logoColor=white)
+![LangGraph](https://img.shields.io/badge/-LangGraph-1C3C3C?style=flat-square&logo=langchain&logoColor=white)
+![LangChain](https://img.shields.io/badge/-LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white)
+![MCP](https://img.shields.io/badge/-MCP-000000?style=flat-square&logo=modelcontextprotocol&logoColor=white)
+![Ollama](https://img.shields.io/badge/-Ollama-000000?style=flat-square&logo=ollama&logoColor=white)
+![Llama 3.1](https://img.shields.io/badge/-Llama%203.1-0866FF?style=flat-square&logo=meta&logoColor=white)
 
 ---
 
