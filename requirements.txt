@@ -1,0 +1,12 @@
+# already needed by your Banking Support AI project
+torch
+transformers
+accelerate
+safetensors
+sentence-transformers
+faiss-cpu
+# new for the LangGraph + MCP layer
+langgraph
+langchain-core
+langchain-mcp-adapters
+mcp
