@@ -439,9 +439,6 @@ It explores how **BERT, QLoRA, RAG, vector retrieval, LLM generation, LangGraph 
 ---
 
 If you've made it this far, thank you for checking out my project! 😄
-
 I'm actively looking for opportunities in **AI/ML Engineering, NLP, and LLM application development**.
 
-If you think I could be a good fit for your team, I'd love to connect!
-
-**And if you're hiring, please consider giving me a chance. I'm ready to learn, build, and contribute. 🚀**
+**HIRE ME !!!!**
